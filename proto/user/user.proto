@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package user;
 
-option go_package = "github.com/aleksandrborohovsky/chat_project_proto/user";
+option go_package = "github.com/AleksandrBorohovsky/chat_project_proto";
 
 service User {
     // Register registers a new user
