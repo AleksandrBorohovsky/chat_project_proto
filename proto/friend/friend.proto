@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package user;
+
+option go_package = "github.com/aleksandrborohovsky/chat_project_proto";
+
+service Friend {
+    // Add add new friend to friend list
+    rpc AddFriend(AddFriendRequest) returns (google.protobuf.Empty);
+    // Add delete friend from friend list
+    rpc DeleteFriend(DeleteFriendRequest) returns (google.protobuf.Empty);
+}
+
+message AddFriendRequest {
+    int64 friend_id = 1;
+}
+
+message DeleteFriendRequest {
+    int64 friend_id = 1;
+}
