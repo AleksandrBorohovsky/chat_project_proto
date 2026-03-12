@@ -4,7 +4,7 @@
 // 	protoc        v7.34.0
 // source: user/user.proto
 
-package chat_project_proto
+package user
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -324,7 +324,7 @@ const file_user_user_proto_rawDesc = "" +
 	"\x04User\x129\n" +
 	"\bRegister\x12\x15.user.RegisterRequest\x1a\x16.user.RegisterResponse\x120\n" +
 	"\x05Login\x12\x12.user.LoginRequest\x1a\x13.user.LoginResponse\x125\n" +
-	"\x06Logout\x12\x13.user.LogoutRequest\x1a\x16.google.protobuf.EmptyB3Z1github.com/aleksandrborohovsky/chat_project_protob\x06proto3"
+	"\x06Logout\x12\x13.user.LogoutRequest\x1a\x16.google.protobuf.EmptyB8Z6github.com/aleksandrborohovsky/chat_project_proto/userb\x06proto3"
 
 var (
 	file_user_user_proto_rawDescOnce sync.Once

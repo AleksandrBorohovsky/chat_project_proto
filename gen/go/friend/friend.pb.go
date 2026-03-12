@@ -4,7 +4,7 @@
 // 	protoc        v7.34.0
 // source: friend/friend.proto
 
-package chat_project_proto
+package friend
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -170,7 +170,7 @@ const file_friend_friend_proto_rawDesc = "" +
 	"\tAddFriend\x12\x16.user.AddFriendRequest\x1a\x16.google.protobuf.Empty\x12A\n" +
 	"\fDeleteFriend\x12\x19.user.DeleteFriendRequest\x1a\x16.google.protobuf.Empty\x12>\n" +
 	"\n" +
-	"GetFriends\x12\x16.google.protobuf.Empty\x1a\x18.user.GetFriendsResponseB3Z1github.com/aleksandrborohovsky/chat_project_protob\x06proto3"
+	"GetFriends\x12\x16.google.protobuf.Empty\x1a\x18.user.GetFriendsResponseB:Z8github.com/aleksandrborohovsky/chat_project_proto/friendb\x06proto3"
 
 var (
 	file_friend_friend_proto_rawDescOnce sync.Once

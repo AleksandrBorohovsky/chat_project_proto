@@ -4,7 +4,7 @@ import "google/protobuf/empty.proto";
 
 package user;
 
-option go_package = "github.com/aleksandrborohovsky/chat_project_proto";
+option go_package = "github.com/aleksandrborohovsky/chat_project_proto/user";
 
 service User {
     // Register registers a new user
