@@ -110,6 +110,50 @@ func (x *DeleteFriendRequest) GetFriendId() int64 {
 	return 0
 }
 
+type GetFriendsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	FriendsIds    []int64                `protobuf:"varint,1,rep,packed,name=friends_ids,json=friendsIds,proto3" json:"friends_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFriendsResponse) Reset() {
+	*x = GetFriendsResponse{}
+	mi := &file_friend_friend_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFriendsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFriendsResponse) ProtoMessage() {}
+
+func (x *GetFriendsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_friend_friend_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFriendsResponse.ProtoReflect.Descriptor instead.
+func (*GetFriendsResponse) Descriptor() ([]byte, []int) {
+	return file_friend_friend_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetFriendsResponse) GetFriendsIds() []int64 {
+	if x != nil {
+		return x.FriendsIds
+	}
+	return nil
+}
+
 var File_friend_friend_proto protoreflect.FileDescriptor
 
 const file_friend_friend_proto_rawDesc = "" +
@@ -118,10 +162,15 @@ const file_friend_friend_proto_rawDesc = "" +
 	"\x10AddFriendRequest\x12\x1b\n" +
 	"\tfriend_id\x18\x01 \x01(\x03R\bfriendId\"2\n" +
 	"\x13DeleteFriendRequest\x12\x1b\n" +
-	"\tfriend_id\x18\x01 \x01(\x03R\bfriendId2\x88\x01\n" +
+	"\tfriend_id\x18\x01 \x01(\x03R\bfriendId\"5\n" +
+	"\x12GetFriendsResponse\x12\x1f\n" +
+	"\vfriends_ids\x18\x01 \x03(\x03R\n" +
+	"friendsIds2\xc8\x01\n" +
 	"\x06Friend\x12;\n" +
 	"\tAddFriend\x12\x16.user.AddFriendRequest\x1a\x16.google.protobuf.Empty\x12A\n" +
-	"\fDeleteFriend\x12\x19.user.DeleteFriendRequest\x1a\x16.google.protobuf.EmptyB3Z1github.com/aleksandrborohovsky/chat_project_protob\x06proto3"
+	"\fDeleteFriend\x12\x19.user.DeleteFriendRequest\x1a\x16.google.protobuf.Empty\x12>\n" +
+	"\n" +
+	"GetFriends\x12\x16.google.protobuf.Empty\x1a\x18.user.GetFriendsResponseB3Z1github.com/aleksandrborohovsky/chat_project_protob\x06proto3"
 
 var (
 	file_friend_friend_proto_rawDescOnce sync.Once
@@ -135,19 +184,22 @@ func file_friend_friend_proto_rawDescGZIP() []byte {
 	return file_friend_friend_proto_rawDescData
 }
 
-var file_friend_friend_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_friend_friend_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_friend_friend_proto_goTypes = []any{
 	(*AddFriendRequest)(nil),    // 0: user.AddFriendRequest
 	(*DeleteFriendRequest)(nil), // 1: user.DeleteFriendRequest
-	(*emptypb.Empty)(nil),       // 2: google.protobuf.Empty
+	(*GetFriendsResponse)(nil),  // 2: user.GetFriendsResponse
+	(*emptypb.Empty)(nil),       // 3: google.protobuf.Empty
 }
 var file_friend_friend_proto_depIdxs = []int32{
 	0, // 0: user.Friend.AddFriend:input_type -> user.AddFriendRequest
 	1, // 1: user.Friend.DeleteFriend:input_type -> user.DeleteFriendRequest
-	2, // 2: user.Friend.AddFriend:output_type -> google.protobuf.Empty
-	2, // 3: user.Friend.DeleteFriend:output_type -> google.protobuf.Empty
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	3, // 2: user.Friend.GetFriends:input_type -> google.protobuf.Empty
+	3, // 3: user.Friend.AddFriend:output_type -> google.protobuf.Empty
+	3, // 4: user.Friend.DeleteFriend:output_type -> google.protobuf.Empty
+	2, // 5: user.Friend.GetFriends:output_type -> user.GetFriendsResponse
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -164,7 +216,7 @@ func file_friend_friend_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_friend_friend_proto_rawDesc), len(file_friend_friend_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

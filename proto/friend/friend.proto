@@ -11,6 +11,8 @@ service Friend {
     rpc AddFriend(AddFriendRequest) returns (google.protobuf.Empty);
     // Add delete friend from friend list
     rpc DeleteFriend(DeleteFriendRequest) returns (google.protobuf.Empty);
+    // Get all users friends
+    rpc GetFriends(google.protobuf.Empty) returns (GetFriendsResponse);
 }
 
 message AddFriendRequest {
@@ -19,4 +21,8 @@ message AddFriendRequest {
 
 message DeleteFriendRequest {
     int64 friend_id = 1;
+}
+
+message GetFriendsResponse {
+    repeated int64 friends_ids = 1;
 }
