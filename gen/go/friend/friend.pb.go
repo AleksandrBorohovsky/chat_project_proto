@@ -154,6 +154,102 @@ func (x *GetFriendsResponse) GetFriendsIds() []int64 {
 	return nil
 }
 
+type GetFriendInfoRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	FriendId      int64                  `protobuf:"varint,1,opt,name=friend_id,json=friendId,proto3" json:"friend_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFriendInfoRequest) Reset() {
+	*x = GetFriendInfoRequest{}
+	mi := &file_friend_friend_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFriendInfoRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFriendInfoRequest) ProtoMessage() {}
+
+func (x *GetFriendInfoRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_friend_friend_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFriendInfoRequest.ProtoReflect.Descriptor instead.
+func (*GetFriendInfoRequest) Descriptor() ([]byte, []int) {
+	return file_friend_friend_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetFriendInfoRequest) GetFriendId() int64 {
+	if x != nil {
+		return x.FriendId
+	}
+	return 0
+}
+
+type GetFriendInfoResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	FriendId      int64                  `protobuf:"varint,1,opt,name=friend_id,json=friendId,proto3" json:"friend_id,omitempty"`
+	Email         string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetFriendInfoResponse) Reset() {
+	*x = GetFriendInfoResponse{}
+	mi := &file_friend_friend_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetFriendInfoResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetFriendInfoResponse) ProtoMessage() {}
+
+func (x *GetFriendInfoResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_friend_friend_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetFriendInfoResponse.ProtoReflect.Descriptor instead.
+func (*GetFriendInfoResponse) Descriptor() ([]byte, []int) {
+	return file_friend_friend_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetFriendInfoResponse) GetFriendId() int64 {
+	if x != nil {
+		return x.FriendId
+	}
+	return 0
+}
+
+func (x *GetFriendInfoResponse) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
 var File_friend_friend_proto protoreflect.FileDescriptor
 
 const file_friend_friend_proto_rawDesc = "" +
@@ -165,12 +261,18 @@ const file_friend_friend_proto_rawDesc = "" +
 	"\tfriend_id\x18\x01 \x01(\x03R\bfriendId\"5\n" +
 	"\x12GetFriendsResponse\x12\x1f\n" +
 	"\vfriends_ids\x18\x01 \x03(\x03R\n" +
-	"friendsIds2\xc8\x01\n" +
+	"friendsIds\"3\n" +
+	"\x14GetFriendInfoRequest\x12\x1b\n" +
+	"\tfriend_id\x18\x01 \x01(\x03R\bfriendId\"J\n" +
+	"\x15GetFriendInfoResponse\x12\x1b\n" +
+	"\tfriend_id\x18\x01 \x01(\x03R\bfriendId\x12\x14\n" +
+	"\x05email\x18\x02 \x01(\tR\x05email2\x92\x02\n" +
 	"\x06Friend\x12;\n" +
 	"\tAddFriend\x12\x16.user.AddFriendRequest\x1a\x16.google.protobuf.Empty\x12A\n" +
 	"\fDeleteFriend\x12\x19.user.DeleteFriendRequest\x1a\x16.google.protobuf.Empty\x12>\n" +
 	"\n" +
-	"GetFriends\x12\x16.google.protobuf.Empty\x1a\x18.user.GetFriendsResponseB:Z8github.com/aleksandrborohovsky/chat_project_proto/friendb\x06proto3"
+	"GetFriends\x12\x16.google.protobuf.Empty\x1a\x18.user.GetFriendsResponse\x12H\n" +
+	"\rGetFriendInfo\x12\x1a.user.GetFriendInfoRequest\x1a\x1b.user.GetFriendInfoResponseB:Z8github.com/aleksandrborohovsky/chat_project_proto/friendb\x06proto3"
 
 var (
 	file_friend_friend_proto_rawDescOnce sync.Once
@@ -184,22 +286,26 @@ func file_friend_friend_proto_rawDescGZIP() []byte {
 	return file_friend_friend_proto_rawDescData
 }
 
-var file_friend_friend_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_friend_friend_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_friend_friend_proto_goTypes = []any{
-	(*AddFriendRequest)(nil),    // 0: user.AddFriendRequest
-	(*DeleteFriendRequest)(nil), // 1: user.DeleteFriendRequest
-	(*GetFriendsResponse)(nil),  // 2: user.GetFriendsResponse
-	(*emptypb.Empty)(nil),       // 3: google.protobuf.Empty
+	(*AddFriendRequest)(nil),      // 0: user.AddFriendRequest
+	(*DeleteFriendRequest)(nil),   // 1: user.DeleteFriendRequest
+	(*GetFriendsResponse)(nil),    // 2: user.GetFriendsResponse
+	(*GetFriendInfoRequest)(nil),  // 3: user.GetFriendInfoRequest
+	(*GetFriendInfoResponse)(nil), // 4: user.GetFriendInfoResponse
+	(*emptypb.Empty)(nil),         // 5: google.protobuf.Empty
 }
 var file_friend_friend_proto_depIdxs = []int32{
 	0, // 0: user.Friend.AddFriend:input_type -> user.AddFriendRequest
 	1, // 1: user.Friend.DeleteFriend:input_type -> user.DeleteFriendRequest
-	3, // 2: user.Friend.GetFriends:input_type -> google.protobuf.Empty
-	3, // 3: user.Friend.AddFriend:output_type -> google.protobuf.Empty
-	3, // 4: user.Friend.DeleteFriend:output_type -> google.protobuf.Empty
-	2, // 5: user.Friend.GetFriends:output_type -> user.GetFriendsResponse
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	5, // 2: user.Friend.GetFriends:input_type -> google.protobuf.Empty
+	3, // 3: user.Friend.GetFriendInfo:input_type -> user.GetFriendInfoRequest
+	5, // 4: user.Friend.AddFriend:output_type -> google.protobuf.Empty
+	5, // 5: user.Friend.DeleteFriend:output_type -> google.protobuf.Empty
+	2, // 6: user.Friend.GetFriends:output_type -> user.GetFriendsResponse
+	4, // 7: user.Friend.GetFriendInfo:output_type -> user.GetFriendInfoResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -216,7 +322,7 @@ func file_friend_friend_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_friend_friend_proto_rawDesc), len(file_friend_friend_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

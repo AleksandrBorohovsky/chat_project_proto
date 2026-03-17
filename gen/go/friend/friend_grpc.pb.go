@@ -20,9 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Friend_AddFriend_FullMethodName    = "/user.Friend/AddFriend"
-	Friend_DeleteFriend_FullMethodName = "/user.Friend/DeleteFriend"
-	Friend_GetFriends_FullMethodName   = "/user.Friend/GetFriends"
+	Friend_AddFriend_FullMethodName     = "/user.Friend/AddFriend"
+	Friend_DeleteFriend_FullMethodName  = "/user.Friend/DeleteFriend"
+	Friend_GetFriends_FullMethodName    = "/user.Friend/GetFriends"
+	Friend_GetFriendInfo_FullMethodName = "/user.Friend/GetFriendInfo"
 )
 
 // FriendClient is the client API for Friend service.
@@ -35,6 +36,8 @@ type FriendClient interface {
 	DeleteFriend(ctx context.Context, in *DeleteFriendRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Get all users friends
 	GetFriends(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetFriendsResponse, error)
+	// Get info about friend
+	GetFriendInfo(ctx context.Context, in *GetFriendInfoRequest, opts ...grpc.CallOption) (*GetFriendInfoResponse, error)
 }
 
 type friendClient struct {
@@ -75,6 +78,16 @@ func (c *friendClient) GetFriends(ctx context.Context, in *emptypb.Empty, opts .
 	return out, nil
 }
 
+func (c *friendClient) GetFriendInfo(ctx context.Context, in *GetFriendInfoRequest, opts ...grpc.CallOption) (*GetFriendInfoResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetFriendInfoResponse)
+	err := c.cc.Invoke(ctx, Friend_GetFriendInfo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FriendServer is the server API for Friend service.
 // All implementations must embed UnimplementedFriendServer
 // for forward compatibility.
@@ -85,6 +98,8 @@ type FriendServer interface {
 	DeleteFriend(context.Context, *DeleteFriendRequest) (*emptypb.Empty, error)
 	// Get all users friends
 	GetFriends(context.Context, *emptypb.Empty) (*GetFriendsResponse, error)
+	// Get info about friend
+	GetFriendInfo(context.Context, *GetFriendInfoRequest) (*GetFriendInfoResponse, error)
 	mustEmbedUnimplementedFriendServer()
 }
 
@@ -103,6 +118,9 @@ func (UnimplementedFriendServer) DeleteFriend(context.Context, *DeleteFriendRequ
 }
 func (UnimplementedFriendServer) GetFriends(context.Context, *emptypb.Empty) (*GetFriendsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetFriends not implemented")
+}
+func (UnimplementedFriendServer) GetFriendInfo(context.Context, *GetFriendInfoRequest) (*GetFriendInfoResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetFriendInfo not implemented")
 }
 func (UnimplementedFriendServer) mustEmbedUnimplementedFriendServer() {}
 func (UnimplementedFriendServer) testEmbeddedByValue()                {}
@@ -179,6 +197,24 @@ func _Friend_GetFriends_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Friend_GetFriendInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFriendInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FriendServer).GetFriendInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Friend_GetFriendInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FriendServer).GetFriendInfo(ctx, req.(*GetFriendInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Friend_ServiceDesc is the grpc.ServiceDesc for Friend service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -197,6 +233,10 @@ var Friend_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetFriends",
 			Handler:    _Friend_GetFriends_Handler,
+		},
+		{
+			MethodName: "GetFriendInfo",
+			Handler:    _Friend_GetFriendInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
