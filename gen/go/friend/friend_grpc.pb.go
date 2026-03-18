@@ -20,10 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Friend_AddFriend_FullMethodName     = "/user.Friend/AddFriend"
-	Friend_DeleteFriend_FullMethodName  = "/user.Friend/DeleteFriend"
-	Friend_GetFriends_FullMethodName    = "/user.Friend/GetFriends"
-	Friend_GetFriendInfo_FullMethodName = "/user.Friend/GetFriendInfo"
+	Friend_AddFriend_FullMethodName     = "/friend.Friend/AddFriend"
+	Friend_DeleteFriend_FullMethodName  = "/friend.Friend/DeleteFriend"
+	Friend_GetFriends_FullMethodName    = "/friend.Friend/GetFriends"
+	Friend_GetFriendInfo_FullMethodName = "/friend.Friend/GetFriendInfo"
 )
 
 // FriendClient is the client API for Friend service.
@@ -219,7 +219,7 @@ func _Friend_GetFriendInfo_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Friend_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "user.Friend",
+	ServiceName: "friend.Friend",
 	HandlerType: (*FriendServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

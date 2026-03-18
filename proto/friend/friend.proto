@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "google/protobuf/empty.proto";
 
-package user;
+package friend;
 
 option go_package = "github.com/aleksandrborohovsky/chat_project_proto/friend";
 

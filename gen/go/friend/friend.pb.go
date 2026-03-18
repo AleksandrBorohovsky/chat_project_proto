@@ -254,7 +254,7 @@ var File_friend_friend_proto protoreflect.FileDescriptor
 
 const file_friend_friend_proto_rawDesc = "" +
 	"\n" +
-	"\x13friend/friend.proto\x12\x04user\x1a\x1bgoogle/protobuf/empty.proto\"/\n" +
+	"\x13friend/friend.proto\x12\x06friend\x1a\x1bgoogle/protobuf/empty.proto\"/\n" +
 	"\x10AddFriendRequest\x12\x1b\n" +
 	"\tfriend_id\x18\x01 \x01(\x03R\bfriendId\"2\n" +
 	"\x13DeleteFriendRequest\x12\x1b\n" +
@@ -266,13 +266,13 @@ const file_friend_friend_proto_rawDesc = "" +
 	"\tfriend_id\x18\x01 \x01(\x03R\bfriendId\"J\n" +
 	"\x15GetFriendInfoResponse\x12\x1b\n" +
 	"\tfriend_id\x18\x01 \x01(\x03R\bfriendId\x12\x14\n" +
-	"\x05email\x18\x02 \x01(\tR\x05email2\x92\x02\n" +
-	"\x06Friend\x12;\n" +
-	"\tAddFriend\x12\x16.user.AddFriendRequest\x1a\x16.google.protobuf.Empty\x12A\n" +
-	"\fDeleteFriend\x12\x19.user.DeleteFriendRequest\x1a\x16.google.protobuf.Empty\x12>\n" +
+	"\x05email\x18\x02 \x01(\tR\x05email2\x9c\x02\n" +
+	"\x06Friend\x12=\n" +
+	"\tAddFriend\x12\x18.friend.AddFriendRequest\x1a\x16.google.protobuf.Empty\x12C\n" +
+	"\fDeleteFriend\x12\x1b.friend.DeleteFriendRequest\x1a\x16.google.protobuf.Empty\x12@\n" +
 	"\n" +
-	"GetFriends\x12\x16.google.protobuf.Empty\x1a\x18.user.GetFriendsResponse\x12H\n" +
-	"\rGetFriendInfo\x12\x1a.user.GetFriendInfoRequest\x1a\x1b.user.GetFriendInfoResponseB:Z8github.com/aleksandrborohovsky/chat_project_proto/friendb\x06proto3"
+	"GetFriends\x12\x16.google.protobuf.Empty\x1a\x1a.friend.GetFriendsResponse\x12L\n" +
+	"\rGetFriendInfo\x12\x1c.friend.GetFriendInfoRequest\x1a\x1d.friend.GetFriendInfoResponseB:Z8github.com/aleksandrborohovsky/chat_project_proto/friendb\x06proto3"
 
 var (
 	file_friend_friend_proto_rawDescOnce sync.Once
@@ -288,22 +288,22 @@ func file_friend_friend_proto_rawDescGZIP() []byte {
 
 var file_friend_friend_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_friend_friend_proto_goTypes = []any{
-	(*AddFriendRequest)(nil),      // 0: user.AddFriendRequest
-	(*DeleteFriendRequest)(nil),   // 1: user.DeleteFriendRequest
-	(*GetFriendsResponse)(nil),    // 2: user.GetFriendsResponse
-	(*GetFriendInfoRequest)(nil),  // 3: user.GetFriendInfoRequest
-	(*GetFriendInfoResponse)(nil), // 4: user.GetFriendInfoResponse
+	(*AddFriendRequest)(nil),      // 0: friend.AddFriendRequest
+	(*DeleteFriendRequest)(nil),   // 1: friend.DeleteFriendRequest
+	(*GetFriendsResponse)(nil),    // 2: friend.GetFriendsResponse
+	(*GetFriendInfoRequest)(nil),  // 3: friend.GetFriendInfoRequest
+	(*GetFriendInfoResponse)(nil), // 4: friend.GetFriendInfoResponse
 	(*emptypb.Empty)(nil),         // 5: google.protobuf.Empty
 }
 var file_friend_friend_proto_depIdxs = []int32{
-	0, // 0: user.Friend.AddFriend:input_type -> user.AddFriendRequest
-	1, // 1: user.Friend.DeleteFriend:input_type -> user.DeleteFriendRequest
-	5, // 2: user.Friend.GetFriends:input_type -> google.protobuf.Empty
-	3, // 3: user.Friend.GetFriendInfo:input_type -> user.GetFriendInfoRequest
-	5, // 4: user.Friend.AddFriend:output_type -> google.protobuf.Empty
-	5, // 5: user.Friend.DeleteFriend:output_type -> google.protobuf.Empty
-	2, // 6: user.Friend.GetFriends:output_type -> user.GetFriendsResponse
-	4, // 7: user.Friend.GetFriendInfo:output_type -> user.GetFriendInfoResponse
+	0, // 0: friend.Friend.AddFriend:input_type -> friend.AddFriendRequest
+	1, // 1: friend.Friend.DeleteFriend:input_type -> friend.DeleteFriendRequest
+	5, // 2: friend.Friend.GetFriends:input_type -> google.protobuf.Empty
+	3, // 3: friend.Friend.GetFriendInfo:input_type -> friend.GetFriendInfoRequest
+	5, // 4: friend.Friend.AddFriend:output_type -> google.protobuf.Empty
+	5, // 5: friend.Friend.DeleteFriend:output_type -> google.protobuf.Empty
+	2, // 6: friend.Friend.GetFriends:output_type -> friend.GetFriendsResponse
+	4, // 7: friend.Friend.GetFriendInfo:output_type -> friend.GetFriendInfoResponse
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
