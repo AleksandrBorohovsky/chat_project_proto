@@ -102,8 +102,7 @@ func (x *Message) GetSentAt() *timestamppb.Timestamp {
 type SendMessageRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ChatId        int64                  `protobuf:"varint,1,opt,name=chat_id,json=chatId,proto3" json:"chat_id,omitempty"`
-	SenderId      int64                  `protobuf:"varint,2,opt,name=sender_id,json=senderId,proto3" json:"sender_id,omitempty"`
-	Text          string                 `protobuf:"bytes,3,opt,name=text,proto3" json:"text,omitempty"`
+	Text          string                 `protobuf:"bytes,2,opt,name=text,proto3" json:"text,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -141,13 +140,6 @@ func (*SendMessageRequest) Descriptor() ([]byte, []int) {
 func (x *SendMessageRequest) GetChatId() int64 {
 	if x != nil {
 		return x.ChatId
-	}
-	return 0
-}
-
-func (x *SendMessageRequest) GetSenderId() int64 {
-	if x != nil {
-		return x.SenderId
 	}
 	return 0
 }
@@ -301,8 +293,7 @@ func (x *GetMessagesResponse) GetMessages() []*Message {
 
 type CreateChatRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	User1Id       int64                  `protobuf:"varint,1,opt,name=user1_id,json=user1Id,proto3" json:"user1_id,omitempty"`
-	User2Id       int64                  `protobuf:"varint,2,opt,name=user2_id,json=user2Id,proto3" json:"user2_id,omitempty"`
+	FriendId      int64                  `protobuf:"varint,2,opt,name=friend_id,json=friendId,proto3" json:"friend_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -337,16 +328,9 @@ func (*CreateChatRequest) Descriptor() ([]byte, []int) {
 	return file_message_message_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *CreateChatRequest) GetUser1Id() int64 {
+func (x *CreateChatRequest) GetFriendId() int64 {
 	if x != nil {
-		return x.User1Id
-	}
-	return 0
-}
-
-func (x *CreateChatRequest) GetUser2Id() int64 {
-	if x != nil {
-		return x.User2Id
+		return x.FriendId
 	}
 	return 0
 }
@@ -449,21 +433,19 @@ const file_message_message_proto_rawDesc = "" +
 	"\achat_id\x18\x02 \x01(\x03R\x06chatId\x12\x1b\n" +
 	"\tsender_id\x18\x03 \x01(\x03R\bsenderId\x12\x12\n" +
 	"\x04text\x18\x04 \x01(\tR\x04text\x123\n" +
-	"\asent_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x06sentAt\"^\n" +
+	"\asent_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x06sentAt\"A\n" +
 	"\x12SendMessageRequest\x12\x17\n" +
-	"\achat_id\x18\x01 \x01(\x03R\x06chatId\x12\x1b\n" +
-	"\tsender_id\x18\x02 \x01(\x03R\bsenderId\x12\x12\n" +
-	"\x04text\x18\x03 \x01(\tR\x04text\"=\n" +
+	"\achat_id\x18\x01 \x01(\x03R\x06chatId\x12\x12\n" +
+	"\x04text\x18\x02 \x01(\tR\x04text\"=\n" +
 	"\x13SendMessageResponse\x12&\n" +
 	"\amessage\x18\x01 \x01(\v2\f.msg.MessageR\amessage\"C\n" +
 	"\x12GetMessagesRequest\x12\x17\n" +
 	"\achat_id\x18\x01 \x01(\x03R\x06chatId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x03R\x05limit\"?\n" +
 	"\x13GetMessagesResponse\x12(\n" +
-	"\bmessages\x18\x01 \x03(\v2\f.msg.MessageR\bmessages\"I\n" +
-	"\x11CreateChatRequest\x12\x19\n" +
-	"\buser1_id\x18\x01 \x01(\x03R\auser1Id\x12\x19\n" +
-	"\buser2_id\x18\x02 \x01(\x03R\auser2Id\"-\n" +
+	"\bmessages\x18\x01 \x03(\v2\f.msg.MessageR\bmessages\"0\n" +
+	"\x11CreateChatRequest\x12\x1b\n" +
+	"\tfriend_id\x18\x02 \x01(\x03R\bfriendId\"-\n" +
 	"\x12CreateChatResponse\x12\x17\n" +
 	"\achat_id\x18\x01 \x01(\x03R\x06chatId\"5\n" +
 	"\x14DeleteMessageRequest\x12\x1d\n" +
