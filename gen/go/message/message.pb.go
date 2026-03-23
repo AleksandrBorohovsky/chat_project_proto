@@ -249,7 +249,7 @@ func (x *GetMessagesRequest) GetLimit() int64 {
 
 type GetMessagesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Messages      []*Message             `protobuf:"bytes,1,rep,name=messages,proto3" json:"messages,omitempty"`
+	Messages      *[]Message             `protobuf:"bytes,1,rep,name=messages,proto3" json:"messages,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -284,7 +284,7 @@ func (*GetMessagesResponse) Descriptor() ([]byte, []int) {
 	return file_message_message_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetMessagesResponse) GetMessages() []*Message {
+func (x *GetMessagesResponse) GetMessages() *[]Message {
 	if x != nil {
 		return x.Messages
 	}
