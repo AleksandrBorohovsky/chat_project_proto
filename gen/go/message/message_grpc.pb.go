@@ -37,7 +37,7 @@ type MessageServiceClient interface {
 	// Create new chat
 	CreateChat(ctx context.Context, in *CreateChatRequest, opts ...grpc.CallOption) (*CreateChatResponse, error)
 	// Get user chats
-	GetChats(ctx context.Context, in *GetChatsRequest, opts ...grpc.CallOption) (*GetChatsResponse, error)
+	GetChats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetChatsResponse, error)
 	// Get chat members
 	GetMembers(ctx context.Context, in *GetMembersRequest, opts ...grpc.CallOption) (*GetMembersResponse, error)
 	// Get chat history
@@ -74,7 +74,7 @@ func (c *messageServiceClient) CreateChat(ctx context.Context, in *CreateChatReq
 	return out, nil
 }
 
-func (c *messageServiceClient) GetChats(ctx context.Context, in *GetChatsRequest, opts ...grpc.CallOption) (*GetChatsResponse, error) {
+func (c *messageServiceClient) GetChats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetChatsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetChatsResponse)
 	err := c.cc.Invoke(ctx, MessageService_GetChats_FullMethodName, in, out, cOpts...)
@@ -123,7 +123,7 @@ type MessageServiceServer interface {
 	// Create new chat
 	CreateChat(context.Context, *CreateChatRequest) (*CreateChatResponse, error)
 	// Get user chats
-	GetChats(context.Context, *GetChatsRequest) (*GetChatsResponse, error)
+	GetChats(context.Context, *emptypb.Empty) (*GetChatsResponse, error)
 	// Get chat members
 	GetMembers(context.Context, *GetMembersRequest) (*GetMembersResponse, error)
 	// Get chat history
@@ -146,7 +146,7 @@ func (UnimplementedMessageServiceServer) SendMessage(context.Context, *SendMessa
 func (UnimplementedMessageServiceServer) CreateChat(context.Context, *CreateChatRequest) (*CreateChatResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateChat not implemented")
 }
-func (UnimplementedMessageServiceServer) GetChats(context.Context, *GetChatsRequest) (*GetChatsResponse, error) {
+func (UnimplementedMessageServiceServer) GetChats(context.Context, *emptypb.Empty) (*GetChatsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetChats not implemented")
 }
 func (UnimplementedMessageServiceServer) GetMembers(context.Context, *GetMembersRequest) (*GetMembersResponse, error) {
@@ -216,7 +216,7 @@ func _MessageService_CreateChat_Handler(srv interface{}, ctx context.Context, de
 }
 
 func _MessageService_GetChats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetChatsRequest)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -228,7 +228,7 @@ func _MessageService_GetChats_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: MessageService_GetChats_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MessageServiceServer).GetChats(ctx, req.(*GetChatsRequest))
+		return srv.(MessageServiceServer).GetChats(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
