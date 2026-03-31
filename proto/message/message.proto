@@ -13,7 +13,7 @@ service MessageService {
     // Create new chat
     rpc CreateChat (CreateChatRequest) returns (CreateChatResponse);
     // Get user chats
-    rpc GetChats (GetChatsRequest) returns (GetChatsResponse);
+    rpc GetChats (google.protobuf.Empty) returns (GetChatsResponse);
     // Get chat members
     rpc GetMembers (GetMembersRequest) returns (GetMembersResponse);
     // Get chat history
@@ -45,10 +45,6 @@ message CreateChatRequest {
 
 message CreateChatResponse {
     int64 chat_id = 1;
-}
-
-message GetChatsRequest {
-    int64 user_id = 1;
 }
 
 message GetChatsResponse {
