@@ -22,6 +22,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	MessageService_SendMessage_FullMethodName   = "/msg.MessageService/SendMessage"
 	MessageService_CreateChat_FullMethodName    = "/msg.MessageService/CreateChat"
+	MessageService_GetChats_FullMethodName      = "/msg.MessageService/GetChats"
 	MessageService_GetMembers_FullMethodName    = "/msg.MessageService/GetMembers"
 	MessageService_GetMessages_FullMethodName   = "/msg.MessageService/GetMessages"
 	MessageService_DeleteMessage_FullMethodName = "/msg.MessageService/DeleteMessage"
@@ -35,6 +36,8 @@ type MessageServiceClient interface {
 	SendMessage(ctx context.Context, in *SendMessageRequest, opts ...grpc.CallOption) (*SendMessageResponse, error)
 	// Create new chat
 	CreateChat(ctx context.Context, in *CreateChatRequest, opts ...grpc.CallOption) (*CreateChatResponse, error)
+	// Get user chats
+	GetChats(ctx context.Context, in *GetChatsRequest, opts ...grpc.CallOption) (*GetChatsResponse, error)
 	// Get chat members
 	GetMembers(ctx context.Context, in *GetMembersRequest, opts ...grpc.CallOption) (*GetMembersResponse, error)
 	// Get chat history
@@ -65,6 +68,16 @@ func (c *messageServiceClient) CreateChat(ctx context.Context, in *CreateChatReq
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateChatResponse)
 	err := c.cc.Invoke(ctx, MessageService_CreateChat_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *messageServiceClient) GetChats(ctx context.Context, in *GetChatsRequest, opts ...grpc.CallOption) (*GetChatsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetChatsResponse)
+	err := c.cc.Invoke(ctx, MessageService_GetChats_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -109,6 +122,8 @@ type MessageServiceServer interface {
 	SendMessage(context.Context, *SendMessageRequest) (*SendMessageResponse, error)
 	// Create new chat
 	CreateChat(context.Context, *CreateChatRequest) (*CreateChatResponse, error)
+	// Get user chats
+	GetChats(context.Context, *GetChatsRequest) (*GetChatsResponse, error)
 	// Get chat members
 	GetMembers(context.Context, *GetMembersRequest) (*GetMembersResponse, error)
 	// Get chat history
@@ -130,6 +145,9 @@ func (UnimplementedMessageServiceServer) SendMessage(context.Context, *SendMessa
 }
 func (UnimplementedMessageServiceServer) CreateChat(context.Context, *CreateChatRequest) (*CreateChatResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateChat not implemented")
+}
+func (UnimplementedMessageServiceServer) GetChats(context.Context, *GetChatsRequest) (*GetChatsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetChats not implemented")
 }
 func (UnimplementedMessageServiceServer) GetMembers(context.Context, *GetMembersRequest) (*GetMembersResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetMembers not implemented")
@@ -193,6 +211,24 @@ func _MessageService_CreateChat_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MessageServiceServer).CreateChat(ctx, req.(*CreateChatRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MessageService_GetChats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetChatsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MessageServiceServer).GetChats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MessageService_GetChats_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MessageServiceServer).GetChats(ctx, req.(*GetChatsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -265,6 +301,10 @@ var MessageService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateChat",
 			Handler:    _MessageService_CreateChat_Handler,
+		},
+		{
+			MethodName: "GetChats",
+			Handler:    _MessageService_GetChats_Handler,
 		},
 		{
 			MethodName: "GetMembers",

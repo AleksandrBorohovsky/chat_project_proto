@@ -12,6 +12,8 @@ service MessageService {
     rpc SendMessage (SendMessageRequest) returns (SendMessageResponse);
     // Create new chat
     rpc CreateChat (CreateChatRequest) returns (CreateChatResponse);
+    // Get user chats
+    rpc GetChats (GetChatsRequest) returns (GetChatsResponse);
     // Get chat members
     rpc GetMembers (GetMembersRequest) returns (GetMembersResponse);
     // Get chat history
@@ -37,6 +39,22 @@ message SendMessageResponse {
     Message message = 1;
 }
 
+message CreateChatRequest {
+    int64 friend_id = 2; 
+}
+
+message CreateChatResponse {
+    int64 chat_id = 1;
+}
+
+message GetChatsRequest {
+    int64 user_id = 1;
+}
+
+message GetChatsResponse {
+    repeated int64 chats_ids = 1;
+}
+
 message GetMessagesRequest {
     int64 chat_id = 1;
     int64 limit = 2;
@@ -46,18 +64,9 @@ message GetMessagesResponse {
     repeated Message messages = 1;
 }
 
-message CreateChatRequest {
-    int64 friend_id = 2; 
-}
-
-message CreateChatResponse {
-    int64 chat_id = 1;
-}
-
 message GetMembersRequest {
     int64 chat_id = 1;
 }
-
 message GetMembersResponse {
     repeated int64 members_ids = 1;
 }
